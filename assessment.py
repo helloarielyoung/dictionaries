@@ -245,18 +245,23 @@ def kids_game(names):
     #i'm still allowed to use?
 
     new_first_letter = names_dict.get(first_word, 0)[1]
-    for word in allowed_words:
-        #if first letter is new first letter
-        if names_dict.get(word)[0] == new_first_letter:
-            #then append to the result
-            results.append(word)
-            #remove that word from allowed_words
-            allowed_words.remove(word)
-            #get out
-            break
 
-    print new_first_letter
-    print allowed_words
+    while allowed_words:
+        for word in allowed_words:
+            #if first letter is new first letter
+            if names_dict.get(word)[0] == new_first_letter:
+                #then append to the result
+                results.append(word)
+                #assign next new word
+                new_first_letter = names_dict.get(word, 0)[1]
+                #break out of this if and go to next word
+                break
+
+        #remove that word from allowed_words
+        allowed_words.remove(word)
+        #get out and start over with new first letter
+        continue
+
     return results
 
 #####################################################################
