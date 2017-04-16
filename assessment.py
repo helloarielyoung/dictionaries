@@ -65,8 +65,11 @@ def get_melon_price(melon_name):
         >>> get_melon_price('Tomato')
         'No price found'
     """
+    melon_dict = {"Watermelon": 2.95, "Cantaloupe": 2.50, "Musk": 3.25,
+                  "Christmas": 14.25}
 
-    return 0
+    melon_price = melon_dict.get(melon_name, "No price found")
+    return melon_price
 
 
 def word_length_sorted(words):
