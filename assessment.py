@@ -101,6 +101,7 @@ def word_length_sorted(words):
         #sort the list of words
         word_length_dict[len(word)].sort()
 
+    #return the dictionary as a sorted list
     return sorted(word_length_dict.items())
 
 
@@ -143,7 +144,29 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+    pirate_dictionary = {"sir": "matey",
+                         "hotel": "fleabag inn",
+                         "student": "swabbie",
+                         "man": "matey",
+                         "professor": "foul blaggart",
+                         "restaurant": "galley",
+                         "your": "yer",
+                         "excuse": "arr",
+                         "students": "swabbies",
+                         "are": "be",
+                         "restroom": "head",
+                         "my": "me",
+                         "is": "be"}
+
+    #split phrase into list of words
+    phrase_list = list(phrase.split(" "))
+
+    pirate_list = []
+
+    for word in phrase_list:
+        pirate_list.append(pirate_dictionary.get(word, word))
+
+    return " ".join(pirate_list)
 
 
 def kids_game(names):
