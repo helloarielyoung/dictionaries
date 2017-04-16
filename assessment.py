@@ -215,7 +215,49 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    return []
+    #put input list into dictionary
+    names_dict = {}
+
+    for name in names:
+        if name not in names_dict:
+            #dictionary is of the name and it's first letter and last letter
+            names_dict[name] = [name[0:1], name[-1:]]
+        #else nothing - can't have duplicates even if given
+
+    #dictionary is not ordered, so I think I need to combine looking
+    #for the next word in the original list with the first/last
+    #info in the dictionary to find the next qualifying word in the list
+
+    results = []
+
+    #I know I am going to loop this but not sure how yet
+    #add first word.  Maybe it's going to be while allowed_words,
+    #since when that's empty it will be False?
+    first_word = names[0]
+    results.append(first_word)
+
+    #maybe slice names from last word used forward to prevent me from
+    #re-using words?
+    allowed_words = names[1:]
+
+    #next word is look up from dictionary word that starts with last
+    #letter of my first word, but only if it's in the slice that
+    #i'm still allowed to use?
+
+    new_first_letter = names_dict.get(first_word, 0)[1]
+    for word in allowed_words:
+        #if first letter is new first letter
+        if names_dict.get(word)[0] == new_first_letter:
+            #then append to the result
+            results.append(word)
+            #remove that word from allowed_words
+            allowed_words.remove(word)
+            #get out
+            break
+
+    print new_first_letter
+    print allowed_words
+    return results
 
 #####################################################################
 # You can ignore everything below this.
